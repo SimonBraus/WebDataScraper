@@ -6,6 +6,9 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+import pymongo
+import hashlib
+from scrapy.exceptions import DropItem
 
 
 class MongoPipeline:
@@ -36,5 +39,30 @@ class MongoPipeline:
 
     #inserts each scraped item into the MongoDB collection. This method usually contains the core functionality of a pipeline.
     def process_item(self, item, spider):
-        self.db[self.COLLECTION_NAME].insert_one(ItemAdapter(item).asdict())
-        return item
+
+        #calls .compute_item_id() and assigns the hashed output to item_id.
+        item_id = self.compute_item_id(item)
+        #ab hier upsert Methode
+#        item_dict = ItemAdapter(item).asdict()
+
+ #       self.db[self.COLLECTION_NAME].update_one(
+  #          filter={"_id": item_id},
+   #         update={"$set": item_dict},
+    #        upsert=True
+     #   )
+
+      #  return item
+       
+        #query the MongoDB collection to check if an item with the same _id already exists. If Python finds a duplicate, then the code raises a DropItem exception, which tells the framework to discard this item and not to process it further. If it doesn’t find a duplicate, then it proceeds to the next steps.
+        if self.db[self.COLLECTION_NAME].find_one({"_id": item_id}):
+            raise DropItem(f"Duplicate item found: {item}")
+
+        #make up the else condition, where the scraped item doesn’t yet exist in the database. Before inserting the item into your collection, you add the calculated item_id as the value for the ._id attribute to your Item.
+        else:
+            item["_id"] = item_id
+            self.db[self.COLLECTION_NAME].insert_one(ItemAdapter(item).asdict())
+            return item
+
+    def compute_item_id(self, item):
+        url = item["url"]
+        return hashlib.sha256(url.encode("utf-8")).hexdigest()

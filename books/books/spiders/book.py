@@ -15,7 +15,11 @@ class BookSpider(scrapy.Spider):
             item["price"] = book.css(".price_color::text").get()
             yield item
             
-     next_page = response.css("li.next > a::attr(href)").get()
+        next_page = response.css("li.next > a::attr(href)").get()
+
         if next_page:
-            next_page_url = response.urljoin(next_page)
-            yield scrapy.Request(url=next_page_url, callback=self.parse)
+                next_page_url = response.urljoin(next_page)
+                self.logger.info(
+                    f"Navigating to next page with URL {next_page_url}."
+            )
+                yield scrapy.Request(url=next_page_url, callback=self.parse)

@@ -1,4 +1,4 @@
-# Scrapy settings for books project
+# Scrapy settings for braus project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,18 +7,16 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "books"
+BOT_NAME = "braus"
 
-SPIDER_MODULES = ["books.spiders"]
-NEWSPIDER_MODULE = "books.spiders"
+SPIDER_MODULES = ["braus.spiders"]
+NEWSPIDER_MODULE = "braus.spiders"
 
 ADDONS = {}
 
-LOG_LEVEL = "WARNING"
-LOG_FILE = "book_scraper.log"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "books (+http://www.yourdomain.com)"
+#USER_AGENT = "braus (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -43,13 +41,13 @@ DOWNLOAD_DELAY = 1
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "books.middlewares.BooksSpiderMiddleware": 543,
+#    "braus.middlewares.BrausSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "books.middlewares.BooksDownloaderMiddleware": 543,
+#    "braus.middlewares.BrausDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -60,9 +58,9 @@ DOWNLOAD_DELAY = 1
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    "books.pipelines.BooksPipeline": 300,
-}
+#ITEM_PIPELINES = {
+#    "braus.pipelines.BrausPipeline": 300,
+#}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -87,8 +85,3 @@ ITEM_PIPELINES = {
 
 # Set settings whose default value is deprecated to a future-proof value
 FEED_EXPORT_ENCODING = "utf-8"
-
-#connection to Mongo DB
-MONGO_URI = "mongodb://localhost:27017"
-MONGO_DATABASE = "books_db"
-
