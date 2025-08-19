@@ -43,15 +43,15 @@ class MongoPipeline:
         #calls .compute_item_id() and assigns the hashed output to item_id.
         item_id = self.compute_item_id(item)
         #ab hier upsert Methode
-#        item_dict = ItemAdapter(item).asdict()
+        item_dict = ItemAdapter(item).asdict()
 
- #       self.db[self.COLLECTION_NAME].update_one(
-  #          filter={"_id": item_id},
-   #         update={"$set": item_dict},
-    #        upsert=True
-     #   )
+        self.db[self.COLLECTION_NAME].update_one(
+            filter={"_id": item_id},
+            update={"$set": item_dict},
+            upsert=True
+        )
 
-      #  return item
+        return item
        
         #query the MongoDB collection to check if an item with the same _id already exists. If Python finds a duplicate, then the code raises a DropItem exception, which tells the framework to discard this item and not to process it further. If it doesn’t find a duplicate, then it proceeds to the next steps.
         if self.db[self.COLLECTION_NAME].find_one({"_id": item_id}):
