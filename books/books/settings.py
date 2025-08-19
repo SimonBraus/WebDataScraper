@@ -14,7 +14,7 @@ NEWSPIDER_MODULE = "books.spiders"
 
 ADDONS = {}
 
-LOG_LEVEL = "WARNING"
+#LOG_LEVEL = "WARNING"
 LOG_FILE = "book_scraper.log"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -61,7 +61,7 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "books.pipelines.MongoPipeline": 300,
+    "books.pipelines.BookPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
