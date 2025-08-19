@@ -61,7 +61,7 @@ DOWNLOAD_DELAY = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "books.pipelines.BooksPipeline": 300,
+    "books.pipelines.MongoPipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

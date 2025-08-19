@@ -1,0 +1,31 @@
+2025-08-19 18:02:40 [twisted] CRITICAL: Unhandled error in Deferred:
+2025-08-19 18:02:40 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "C:\Users\Simon\Documents\GitHub\WebDataScraper\WebScraper01\Lib\site-packages\scrapy\utils\misc.py", line 74, in load_object
+    obj = getattr(mod, name)
+AttributeError: module 'books.pipelines' has no attribute 'BooksPipeline'. Did you mean: 'MongoPipeline'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Simon\Documents\GitHub\WebDataScraper\WebScraper01\Lib\site-packages\twisted\internet\defer.py", line 1857, in _inlineCallbacks
+    result = context.run(gen.send, result)
+  File "C:\Users\Simon\Documents\GitHub\WebDataScraper\WebScraper01\Lib\site-packages\scrapy\crawler.py", line 156, in crawl
+    self.engine = self._create_engine()
+                  ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Simon\Documents\GitHub\WebDataScraper\WebScraper01\Lib\site-packages\scrapy\crawler.py", line 169, in _create_engine
+    return ExecutionEngine(self, lambda _: self.stop())
+  File "C:\Users\Simon\Documents\GitHub\WebDataScraper\WebScraper01\Lib\site-packages\scrapy\core\engine.py", line 114, in __init__
+    self.scraper: Scraper = Scraper(crawler)
+                            ~~~~~~~^^^^^^^^^
+  File "C:\Users\Simon\Documents\GitHub\WebDataScraper\WebScraper01\Lib\site-packages\scrapy\core\scraper.py", line 107, in __init__
+    self.itemproc: ItemPipelineManager = itemproc_cls.from_crawler(crawler)
+                                         ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Simon\Documents\GitHub\WebDataScraper\WebScraper01\Lib\site-packages\scrapy\middleware.py", line 77, in from_crawler
+    return cls._from_settings(crawler.settings, crawler)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Simon\Documents\GitHub\WebDataScraper\WebScraper01\Lib\site-packages\scrapy\middleware.py", line 86, in _from_settings
+    mwcls = load_object(clspath)
+  File "C:\Users\Simon\Documents\GitHub\WebDataScraper\WebScraper01\Lib\site-packages\scrapy\utils\misc.py", line 76, in load_object
+    raise NameError(f"Module '{module}' doesn't define any object named '{name}'")
+NameError: Module 'books.pipelines' doesn't define any object named 'BooksPipeline'
