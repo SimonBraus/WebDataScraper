@@ -17,7 +17,8 @@ ADDONS = {}
 MONGO_URI = "mongodb://localhost:27017"
 MONGO_DATABASE = "books_db"
 
-LOG_LEVEL = "INFO"
+LOG_LEVEL = "WARNING"
+LOG_FILE = "book_scraper.log"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = "books (+http://www.yourdomain.com)"
