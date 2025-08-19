@@ -89,3 +89,7 @@ FEED_EXPORT_ENCODING = "utf-8"
 #connection to Mongo DB
 MONGO_URI = "mongodb://localhost:27017"
 MONGO_DATABASE = "books_db"
+
+ITEM_PIPELINES = {
+    "books.pipelines.MongoPipeline": 300,
+}
